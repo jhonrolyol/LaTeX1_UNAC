@@ -1,0 +1,173 @@
+% Preámbulo
+\documentclass[a4paper,11pt]{article}
+% Paquetes
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+%\usepackage{amsfonts,latexsym}
+\usepackage{amsthm}
+\usepackage[spanish]{babel}
+\usepackage{titlesec}
+
+% Opening
+\title{Capítulo 16: Ejemplos}
+\author{Curso de \LaTeX}
+\date{}
+
+\addtolength{\textwidth}{2cm}
+\addtolength{\hoffset}{-1cm}
+\addtolength{\textheight}{2cm}
+\addtolength{\voffset}{-1cm}
+
+\renewcommand{\thesection}{\Roman{section}}
+
+\renewcommand{\theequation}{\thesection-\arabic{equation}}
+
+\titleformat{\section}[hang]
+{\bfseries}{
+\fbox{SECCIÓN \thesection} \hspace{3mm}}{0pt}
+{\bfseries}
+
+\begin{document}
+
+\maketitle
+
+
+
+\section{Algunas ecuaciones}
+
+\textbf{1.-} \ Pista: combinar \texttt{split} y \texttt{equation} 
+(para tener el número de ecuación centrado)
+ 
+\begin{equation}
+\begin{split}
+H_c=& \frac{n_1!\,n_2!\,n_3!}
+{n_1+n_2+n_3}\sum_i\left[\binom{n_1}{i}
+\binom{n_2}{n_3-n_1+i}\right.\\[1mm]
+&+\left.\binom{n_1-1}{i} \binom{n_2-1}{n_3-n_1+i}\right]
+\end{split}\label{combinatoria}
+\end{equation}
+
+\medskip
+Referencia cruzada a la ecuación \eqref{combinatoria}
+
+\bigskip
+
+\textbf{2.-} \ Construir con el entorno \texttt{align}:
+
+\begin{align}
+\gamma_x(t)&=(\cos tu+\sen tx,v), \label{x} \\
+\gamma_y(t)&=(u,\cos tv+\sen ty), \label{y} 
+\end{align}
+
+\medskip
+Referencia cruzada a la ecuación \eqref{x}; \ 
+Referencia cruzada a la ecuación \eqref{y}
+
+\bigskip
+
+\textbf{3.-}  Entornos array anidados para matrix por bloques
+\begin{equation}\label{matriz}
+\left(
+\begin{array}{c@{}c@{}c}
+ \begin{array}{|cc|}\hline
+  a_{11} & a_{12} \\
+  a_{21} & a_{22} \\\hline
+ \end{array} & \mathbf{0} & \mathbf{0} \\
+ \mathbf{0} &
+ \begin{array}{|ccc|}\hline
+  b_{11} & b_{12} & b_{13}\\
+  b_{21} & b_{22} & b_{23}\\
+  b_{31} & b_{32} & b_{33}\\\hline
+ \end{array} & \mathbf{0} \\
+ \mathbf{0} & \mathbf{0} &
+ \begin{array}{|cc|}\hline
+  c_{11} & c_{12} \\
+  c_{21} & c_{22} \\\hline
+ \end{array} \\
+\end{array}
+\right)
+\end{equation}
+
+  Referencia cruzada a la ecuación \eqref{matriz}
+
+\section{Más ecuaciones}
+
+\textbf{4.-} \ Construir con el entorno \texttt{alignat}:
+\begin{alignat}{3}
+V_i & =v_i - q_i v_j, & \qquad X_i & = x_i - q_i x_j,
+ & \qquad U_i & = u_i,
+ \qquad \text{para $i\ne j$;} \notag \\
+V_j & = v_j, & \qquad X_j & = x_j,
+  & \qquad U_j & = u_j + \sum_{i\ne j} q_i u_i.
+\end{alignat}
+
+
+\bigskip
+
+\textbf{5.-} \ Construir con el entorno \texttt{cases}:
+
+\begin{equation}
+f(x)=\begin{cases}
+0 & \text{if} \quad 0\leq x\leq 1/2 \\
+1 & \text{if} \quad 1/2\leq x\leq 1 \\
+g(x) & \parbox[t]{5.5cm}{if $x>1$, we evaluate
+the change of the step function with 
+respect to the integration constant $c(x)$. 
+This is done for every $\xi\in\aleph$}
+\end{cases}\label{casos}
+\end{equation}
+
+\medskip
+Referencia cruzada a la ecuación \eqref{casos};
+
+\bigskip
+
+\textbf{6.-} \ Etiquetas especiales con \verb+\tag{Etiqueta}+
+\begin{align}
+f(x) & =a\tag{linear}\\
+g(x) & =dx^{2}+cx+b\tag{quadratic}\\
+h(x) & =\sin x\tag{trigonometric}
+\end{align}
+
+
+\newtheorem{teo}{Teorema}[section]
+\newtheorem{lem}{Lema}
+
+
+\section{Manejo de teoremas}
+
+\begin{teo}\label{detmat} 
+Sea $B=(b_{ij})$ una matrix $n\times n$. Entonces:
+\begin{equation}
+\prod_{i\in n}
+\left(\sum_{j\in n}b_{ij}\right) = 0
+\end{equation}
+\end{teo}
+
+Aquí metemos una referencia cruzada al teorema \ref{detmat}
+
+\begin{lem}\label{lematonto}
+Ejemplo de Lema...
+\end{lem}
+
+\section{Más teoremas}
+
+\begin{teo}\label{detvec} 
+Sea $B=(b_{i})$ un vector en $\mathbb{R}^n$. Entonces:
+\begin{equation}
+\sum_{j\in n}b_{j} = 0
+\end{equation}
+\end{teo}
+
+\begin{proof}
+Haciendo uso del lema \ref{lematonto} y de la igualdad 
+\eqref{combinatoria} la demostración es directa.
+\end{proof}
+
+\begin{lem}[Juanito y Pepito]
+\label{lemanuevo}
+Ejemplo de Lema con comentario adicional...
+\end{lem}
+
+
+\end{document}
